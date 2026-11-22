@@ -81,6 +81,13 @@ public class Main {
          EdgeOptions options = new EdgeOptions();
          // ✅ 开启无头模式（后台运行）
          options.addArguments("--headless");
+      // 加上下面这两行，忽略证书错误
+         options.addArguments("--ignore-certificate-errors");
+         options.addArguments("--ignore-ssl-errors");
+         options.addArguments("--unsafely-treat-insecure-origin-as-secure=http://8.145.49.193");
+
+         // 同时加上这个能力项（Selenium 4 推荐做法）
+         options.setCapability("acceptInsecureCerts", true);
          driver = new EdgeDriver(options);
          //driver.manage().window().minimize();
          System.out.println("浏览器配置完成，进入无头模式");
